@@ -15,8 +15,16 @@ import java.util.Optional;
 @Repository
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-    @Autowired
-    private  DataSource dataSource;
+//    @Autowired
+//    private  DataSource dataSource;
+
+    private final DataSource dataSource;
+
+    public NewsRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+
 
     @Override
     public List<NewsModel> readAll() {
@@ -25,7 +33,8 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public Optional<NewsModel> readById(Long newsId) {
-        return Optional.of(this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst().get());
+//        return Optional.of(this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst().get());
+        return this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst();
     }
 
     @Override

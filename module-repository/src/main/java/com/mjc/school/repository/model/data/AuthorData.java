@@ -4,6 +4,7 @@ import com.mjc.school.repository.utils.Utils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class AuthorData {
     private void init() {
         this.authorList = new ArrayList<AuthorModel>();
         for (long i = 1L; i <= 20L; ++i) {
-            this.authorList.add(new AuthorModel(i, Utils.getRandomContentByFilePath("authors")));
+            final LocalDateTime date = Utils.getRandomDate();
+            this.authorList.add(new AuthorModel(i, Utils.getRandomContentByFilePath("authors"), date, date));
         }
     }
 
