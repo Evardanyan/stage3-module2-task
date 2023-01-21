@@ -1,5 +1,7 @@
 package com.mjc.school.repository.model.data;
 
+import com.mjc.school.repository.model.impl.AuthorModel;
+import com.mjc.school.repository.model.impl.NewsModel;
 import com.mjc.school.repository.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

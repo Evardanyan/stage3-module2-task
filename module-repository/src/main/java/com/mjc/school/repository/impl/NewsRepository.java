@@ -1,9 +1,8 @@
 package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.data.NewsModel;
+import com.mjc.school.repository.model.impl.NewsModel;
 import com.mjc.school.repository.utils.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

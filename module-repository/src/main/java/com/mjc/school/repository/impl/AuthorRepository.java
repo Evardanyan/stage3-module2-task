@@ -1,7 +1,7 @@
 package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.data.AuthorModel;
+import com.mjc.school.repository.model.impl.AuthorModel;
 import com.mjc.school.repository.utils.DataSource;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.mjc.school.repository.model.data;
+package com.mjc.school.repository.model.impl;
 
 import com.mjc.school.repository.model.BaseEntity;
 

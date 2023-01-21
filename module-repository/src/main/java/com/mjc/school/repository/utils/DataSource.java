@@ -2,11 +2,10 @@ package com.mjc.school.repository.utils;
 
 
 import com.mjc.school.repository.model.data.AuthorData;
-import com.mjc.school.repository.model.data.AuthorModel;
+import com.mjc.school.repository.model.impl.AuthorModel;
 import com.mjc.school.repository.model.data.NewsData;
-import com.mjc.school.repository.model.data.NewsModel;
+import com.mjc.school.repository.model.impl.NewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
