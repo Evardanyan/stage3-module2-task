@@ -2,10 +2,9 @@ package com.mjc.school.repository.utils;
 
 
 import com.mjc.school.repository.model.data.AuthorData;
-import com.mjc.school.repository.model.impl.AuthorModel;
 import com.mjc.school.repository.model.data.NewsData;
+import com.mjc.school.repository.model.impl.AuthorModel;
 import com.mjc.school.repository.model.impl.NewsModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -15,11 +14,15 @@ import java.util.List;
 @Component
 public class DataSource {
 
-    @Autowired
     private NewsData newsData;
 
-    @Autowired
     private AuthorData authorData;
+
+    public DataSource(AuthorData authorData, NewsData newsData) {
+        this.authorData = authorData;
+        this.newsData = newsData;
+    }
+
 
     private List<NewsModel> news;
     private List<AuthorModel> authors;
@@ -27,8 +30,8 @@ public class DataSource {
 
     @PostConstruct
     private void init() {
-       news =  newsData.getNewsList();
-       authors = authorData.getAuthorList();
+        news = newsData.getNewsList();
+        authors = authorData.getAuthorList();
     }
 
     public List<NewsModel> getNews() {

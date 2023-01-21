@@ -14,9 +14,6 @@ import java.util.Optional;
 @Repository
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-//    @Autowired
-//    private  DataSource dataSource;
-
     private final DataSource dataSource;
 
     public NewsRepository(DataSource dataSource) {
