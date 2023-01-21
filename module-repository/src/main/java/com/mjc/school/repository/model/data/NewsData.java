@@ -20,8 +20,11 @@ public class NewsData {
     private static final String NEWS_FILE_NAME = "news";
     private List<NewsModel> newsList;
 
-    @Autowired
     private AuthorData authorData;
+
+    public NewsData(AuthorData authorData) {
+        this.authorData = authorData;
+    }
 
     @PostConstruct
     private void init() {
