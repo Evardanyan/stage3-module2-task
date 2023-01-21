@@ -29,7 +29,6 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public Optional<NewsModel> readById(Long newsId) {
-//        return Optional.of(this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst().get());
         return this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst();
     }
 
