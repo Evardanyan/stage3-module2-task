@@ -10,11 +10,11 @@ import java.util.List;
 
 @Aspect
 @Component
-public class DeleteAuthor {
+public class DeletingAuthor {
 
     private final BaseRepository<NewsModel, Long> repository;
 
-    public DeleteAuthor(BaseRepository<NewsModel, Long> repository) {
+    public DeletingAuthor(BaseRepository<NewsModel, Long> repository) {
         this.repository = repository;
     }
 
