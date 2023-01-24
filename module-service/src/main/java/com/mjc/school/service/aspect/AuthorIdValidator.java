@@ -11,23 +11,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthorIdValidator {
 
-    @Autowired
-    private Validator validator;
+    private final Validator validator;
 
-//    @Before("@annotation(com.mjc.school.service.annotation.ValidateAuthorId)")
-    @Around("@annotation(com.mjc.school.service.annotation.ValidateAuthorId)")
-    public void beforeCRUDOperationAuthorService(JoinPoint joinPoint) {
-
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-
-        Object[] args = joinPoint.getArgs();
-    try {
-        validator.validateAuthorId(((Long) (args[0])));
-    } catch (RuntimeException ex) {
-//        System.out.println(ex.getMessage());
-        ex.getMessage();
+    public AuthorIdValidator(Validator validator) {
+        this.validator = validator;
     }
 
+
+    @Before("@annotation(com.mjc.school.service.annotation.ValidateAuthorId) && args(id)")
+    public void validateId(Long id) {
+        validator.validateAuthorId(id);
     }
 
 

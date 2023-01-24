@@ -1,5 +1,6 @@
 package com.mjc.school.service.aspect;
 
+import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.validator.Validator;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -13,23 +14,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class NewsIdValidator {
 
-    @Autowired
-    private Validator validator;
+    private final Validator validator;
 
-    @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsId)")
-    public void beforeCRUDOperationNewsService(JoinPoint joinPoint) {
+    public NewsIdValidator(Validator validator) {
+        this.validator = validator;
+    }
 
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 
-        Object[] args = joinPoint.getArgs();
+    @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsId) && args(id)")
+    public void validateId(Long id) {
+        validator.validateNewsId(id);
 
-        try {
-            validator.validateNewsId(((Long) (args[0])));
-        } catch (RuntimeException ex) {
-            ex.getMessage();
-        }
 
     }
+
+
 
 
 }

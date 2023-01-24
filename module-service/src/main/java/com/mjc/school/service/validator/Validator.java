@@ -25,7 +25,7 @@ public class Validator {
     public void validateNewsId(Long newsId) {
         this.validateNumber(newsId, NEWS_ID);
         if (newsId > (long)MAX_AUTHOR_ID.intValue()) {
-            throw new ValidatorException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_DOES_NOT_EXIST.getCodeMsg(), newsId));
+            throw new ValidatorException(String.format(ServiceErrorCodeMessage.NEWS_ID_DOES_NOT_EXIST.getCodeMsg(), newsId));
         }
     }
 

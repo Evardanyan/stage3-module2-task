@@ -12,21 +12,16 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class NewsDtoValidator {
-    @Autowired
-    private Validator validator;
 
-    @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsDto)")
-    public void beforeCRUDOperation(JoinPoint joinPoint) {
+    private final Validator validator;
 
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+    public NewsDtoValidator(Validator validator) {
+        this.validator = validator;
+    }
 
-        Object[] args = joinPoint.getArgs();
-
-        try {
-            validator.validateNewsDto(((NewsDtoRequest) (args[0])));
-        } catch (RuntimeException ex) {
-            ex.getMessage();
-        }
+    @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsDto) && args(dtoRequest)")
+    public void validateNewsRequest(NewsDtoRequest dtoRequest) {
+        validator.validateNewsDto(dtoRequest);
 
     }
 }
