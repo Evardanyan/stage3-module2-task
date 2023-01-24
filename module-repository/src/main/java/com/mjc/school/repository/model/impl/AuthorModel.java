@@ -10,13 +10,13 @@ public class AuthorModel implements BaseEntity<Long> {
     private Long id;
     private String name;
     private LocalDateTime createDate;
-    private LocalDateTime lastUpdateDate;
+    private LocalDateTime lastUpdatedDate;
 
-    public AuthorModel(Long id, String name, LocalDateTime createDate, LocalDateTime lastUpdateDate) {
+    public AuthorModel(Long id, String name, LocalDateTime createDate, LocalDateTime lastUpdatedDate) {
         this.id = id;
         this.name = name;
         this.createDate = createDate;
-        this.lastUpdateDate = lastUpdateDate;
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     public AuthorModel() {
@@ -48,12 +48,12 @@ public class AuthorModel implements BaseEntity<Long> {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getLastUpdateDate() {
-        return lastUpdateDate;
+    public LocalDateTime getLastUpdatedDate() {
+        return lastUpdatedDate;
     }
 
-    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
+    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     @Override
@@ -61,12 +61,12 @@ public class AuthorModel implements BaseEntity<Long> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AuthorModel authorModel = (AuthorModel) o;
-        return Objects.equals(id, authorModel.id) && Objects.equals(name, authorModel.name) && Objects.equals(createDate, authorModel.createDate) && Objects.equals(lastUpdateDate, authorModel.lastUpdateDate);
+        return Objects.equals(id, authorModel.id) && Objects.equals(name, authorModel.name) && Objects.equals(createDate, authorModel.createDate) && Objects.equals(lastUpdatedDate, authorModel.lastUpdatedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createDate, lastUpdateDate);
+        return Objects.hash(id, name, createDate, lastUpdatedDate);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class AuthorModel implements BaseEntity<Long> {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createDate=" + createDate +
-                ", lastUpdateDate=" + lastUpdateDate +
+                ", lastUpdateDate=" + lastUpdatedDate +
                 '}';
     }
 }

@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface NewsModelMapper {
     public List<NewsDtoResponse> modelListToDtoList(List<NewsModel> var1);
 

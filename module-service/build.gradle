@@ -1,6 +1,9 @@
+
 dependencies {
     implementation project(':module-repository')
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    implementation group: 'org.springframework', name: 'spring-aop', version: '5.3.18'
+    implementation 'org.aspectj:aspectjweaver:1.9.9'
 
 }
