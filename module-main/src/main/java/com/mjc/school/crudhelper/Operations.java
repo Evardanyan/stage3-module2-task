@@ -6,6 +6,12 @@ public enum Operations {
     CREATE_NEWS(3, "Create news."),
     UPDATE_NEWS(4, "Update news."),
     REMOVE_NEWS_BY_ID(5, "Remove news by id."),
+
+    GET_ALL_AUTHOR(6, "Get all authors."),
+    GET_AUTHOR_BY_ID(7, "Get authors by id."),
+    CREATE_AUTHOR(8, "Create authors."),
+    UPDATE_AUTHOR(9, "Update authors."),
+    REMOVE_AUTHOR_BY_ID(10, "Remove authors by id."),
     EXIT(0, "Exit.");
 
     public final Integer operationNum;

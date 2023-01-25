@@ -50,6 +50,26 @@ public class Menu {
                             crudMenuHelper.deleteNews(newsController, keyboardInput);
                             continue;
                         }
+                        case "6" -> {
+                            crudMenuHelper.getAuthors(authorController);
+                            continue;
+                        }
+                        case "7" -> {
+                            crudMenuHelper.getAuthorsById(authorController, keyboardInput);
+                            continue;
+                        }
+                        case "8" -> {
+                            crudMenuHelper.createAuthors(authorController, keyboardInput);
+                            continue;
+                        }
+                        case "9" -> {
+                            crudMenuHelper.updateAuthors(authorController, keyboardInput);
+                            continue;
+                        }
+                        case "10" -> {
+                            crudMenuHelper.deleteAuthors(authorController, keyboardInput);
+                            continue;
+                        }
                         case "0" -> {
                             System.exit(0);
                             continue;
