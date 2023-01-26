@@ -29,7 +29,7 @@ public class DataSource {
 
 
     @PostConstruct
-    private void init() {
+    public void init() {
         news = newsData.getNewsList();
         authors = authorData.getAuthorList();
     }

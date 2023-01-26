@@ -5,10 +5,7 @@ import com.mjc.school.repository.model.impl.NewsModel;
 import com.mjc.school.repository.utils.DataSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Repository
@@ -65,7 +62,11 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public boolean  existById(Long newsId) {
+        if (Objects.isNull(newsId)) {
+            return false;
+        }
         return this.dataSource.getNews().stream().anyMatch(news -> newsId.equals(news.getId()));
+
     }
 
 }

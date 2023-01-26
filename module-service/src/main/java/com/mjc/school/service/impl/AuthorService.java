@@ -40,18 +40,20 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
             AuthorModel authorModel = this.baseRepository.readById(id).get();
             return this.mapper.modelToDto(authorModel);
         }
-        throw new NotFoundException(String.format(ServiceErrorCodeMessage.NEWS_ID_DOES_NOT_EXIST.getCodeMsg(), id));
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_DOES_NOT_EXIST.getCodeMsg(), id));
     }
 
     @Override
     @ValidateAuthorDto
     public AuthorDtoResponse create(AuthorDtoRequest dtoRequest) {
-        AuthorModel model = this.mapper.dtoToModel(dtoRequest);
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        model.setCreateDate(date);
-        model.setLastUpdatedDate(date);
-        AuthorModel authorModel = this.baseRepository.create(model);
-        return this.mapper.modelToDto(authorModel);
+        if (!this.baseRepository.existById(dtoRequest.id())) {
+            AuthorModel model = this.mapper.dtoToModel(dtoRequest);
+            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+            model.setLastUpdatedDate(date);
+            AuthorModel authorModel = this.baseRepository.create(model);
+            return this.mapper.modelToDto(authorModel);
+        }
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_ALREADY_EXIST.getCodeMsg(), dtoRequest.id()));
     }
 
 
@@ -66,7 +68,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
             AuthorModel authorModel = this.baseRepository.update(model);
             return this.mapper.modelToDto(authorModel);
         }
-        throw new NotFoundException(String.format(ServiceErrorCodeMessage.NEWS_ID_DOES_NOT_EXIST.getCodeMsg(), dtoRequest.id()));
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_DOES_NOT_EXIST.getCodeMsg(), dtoRequest.id()));
 
     }
 
@@ -76,6 +78,6 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
         if (this.baseRepository.existById(id)) {
             return this.baseRepository.deleteById(id);
         }
-        throw new NotFoundException(String.format(ServiceErrorCodeMessage.NEWS_ID_DOES_NOT_EXIST.getCodeMsg(), id));
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_DOES_NOT_EXIST.getCodeMsg(), id));
     }
 }

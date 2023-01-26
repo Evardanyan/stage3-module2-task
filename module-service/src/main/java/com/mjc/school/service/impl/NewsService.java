@@ -28,7 +28,6 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     public NewsService(BaseRepository<NewsModel, Long> baseRepository, NewsModelMapper mapper) {
         this.baseRepository = baseRepository;
         this.mapper = mapper;
-//        this.mapper = (NewsModelMapper)Mappers.getMapper((Class)NewsModelMapper.class);
     }
 
     @Override
@@ -49,12 +48,14 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @Override
     @ValidateNewsDto
     public NewsDtoResponse create(NewsDtoRequest dtoRequest) {
-        NewsModel model = this.mapper.dtoToModel(dtoRequest);
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        model.setCreateDate(date);
-        model.setLastUpdatedDate(date);
-        NewsModel newsModel = this.baseRepository.create(model);
-        return this.mapper.modelToDto(newsModel);
+        if (!this.baseRepository.existById(dtoRequest.id())) {
+            NewsModel model = this.mapper.dtoToModel(dtoRequest);
+            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+            model.setLastUpdatedDate(date);
+            NewsModel newsModel = this.baseRepository.create(model);
+            return this.mapper.modelToDto(newsModel);
+        }
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.NEWS_ID_ALREADY_EXIST.getCodeMsg(), dtoRequest.id()));
     }
 
 

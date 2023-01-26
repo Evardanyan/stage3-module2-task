@@ -17,7 +17,7 @@ public class AuthorData {
     private List<AuthorModel> authorList;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         this.authorList = new ArrayList<AuthorModel>();
         for (long i = 1L; i <= 20L; ++i) {
             final LocalDateTime date = Utils.getRandomDate();

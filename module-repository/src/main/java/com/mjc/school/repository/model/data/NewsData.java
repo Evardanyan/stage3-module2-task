@@ -26,7 +26,7 @@ public class NewsData {
     }
 
     @PostConstruct
-    private void init() {
+    public void init() {
         List<AuthorModel> authorModelList = authorData.getAuthorList();
         this.newsList = new ArrayList<NewsModel>();
         final Random random = new Random();
