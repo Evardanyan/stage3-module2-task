@@ -51,6 +51,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
         if (!this.baseRepository.existById(dtoRequest.id())) {
             NewsModel model = this.mapper.dtoToModel(dtoRequest);
             LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+            model.setCreateDate(date);
             model.setLastUpdatedDate(date);
             NewsModel newsModel = this.baseRepository.create(model);
             return this.mapper.modelToDto(newsModel);

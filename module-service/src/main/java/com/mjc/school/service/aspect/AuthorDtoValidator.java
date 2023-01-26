@@ -20,7 +20,7 @@ public class AuthorDtoValidator {
         this.validator = validator;
     }
 
-    @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsDto) && args(dtoRequest)")
+    @Before("@annotation(com.mjc.school.service.annotation.ValidateAuthorDto) && args(dtoRequest)")
     public void validateNewsRequest(AuthorDtoRequest dtoRequest) {
         validator.validateAuthorDto(dtoRequest);
     }

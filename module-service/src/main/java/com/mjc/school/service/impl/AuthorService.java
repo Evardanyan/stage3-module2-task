@@ -49,6 +49,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
         if (!this.baseRepository.existById(dtoRequest.id())) {
             AuthorModel model = this.mapper.dtoToModel(dtoRequest);
             LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+            model.setCreateDate(date);
             model.setLastUpdatedDate(date);
             AuthorModel authorModel = this.baseRepository.create(model);
             return this.mapper.modelToDto(authorModel);
