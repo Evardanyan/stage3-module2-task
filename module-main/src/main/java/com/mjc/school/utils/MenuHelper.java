@@ -1,4 +1,4 @@
-package com.mjc.school.crudhelper;
+package com.mjc.school.utils;
 
 import com.mjc.school.controller.impl.AuthorController;
 import com.mjc.school.controller.impl.NewsController;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class CrudMenuHelper {
+public class MenuHelper {
     public void printMainMenu() {
         System.out.println("Enter the number of operation:");
         for (Operations operation : Operations.values()) {

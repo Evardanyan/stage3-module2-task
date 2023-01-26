@@ -1,4 +1,4 @@
-package com.mjc.school.crudhelper;
+package com.mjc.school.utils;
 
 public enum Operations {
     GET_ALL_NEWS(1, "Get all news."),

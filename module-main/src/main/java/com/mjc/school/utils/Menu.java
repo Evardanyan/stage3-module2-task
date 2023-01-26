@@ -1,4 +1,4 @@
-package com.mjc.school.crudhelper;
+package com.mjc.school.utils;
 
 import com.mjc.school.controller.impl.AuthorController;
 import com.mjc.school.controller.impl.NewsController;
@@ -9,14 +9,14 @@ import java.util.Scanner;
 @Component
 public class Menu {
 
-    private final CrudMenuHelper crudMenuHelper;
+    private final MenuHelper menuHelper;
 
     private final NewsController newsController;
 
     private final AuthorController authorController;
 
-    public Menu (CrudMenuHelper crudMenuHelper, NewsController newsController, AuthorController authorController) {
-        this.crudMenuHelper = crudMenuHelper;
+    public Menu (MenuHelper menuHelper, NewsController newsController, AuthorController authorController) {
+        this.menuHelper = menuHelper;
         this.newsController = newsController;
         this.authorController = authorController;
     }
@@ -28,46 +28,46 @@ public class Menu {
             try {
                 while (true) {
                     String key;
-                    crudMenuHelper.printMainMenu();
+                    menuHelper.printMainMenu();
                     switch (key = keyboardInput.nextLine()) {
                         case "1" -> {
-                            crudMenuHelper.getNews(newsController);
+                            menuHelper.getNews(newsController);
                             continue;
                         }
                         case "2" -> {
-                            crudMenuHelper.getNewsById(newsController, keyboardInput);
+                            menuHelper.getNewsById(newsController, keyboardInput);
                             continue;
                         }
                         case "3" -> {
-                            crudMenuHelper.createNews(newsController, keyboardInput);
+                            menuHelper.createNews(newsController, keyboardInput);
                             continue;
                         }
                         case "4" -> {
-                            crudMenuHelper.updateNews(newsController, keyboardInput);
+                            menuHelper.updateNews(newsController, keyboardInput);
                             continue;
                         }
                         case "5" -> {
-                            crudMenuHelper.deleteNews(newsController, keyboardInput);
+                            menuHelper.deleteNews(newsController, keyboardInput);
                             continue;
                         }
                         case "6" -> {
-                            crudMenuHelper.getAuthors(authorController);
+                            menuHelper.getAuthors(authorController);
                             continue;
                         }
                         case "7" -> {
-                            crudMenuHelper.getAuthorsById(authorController, keyboardInput);
+                            menuHelper.getAuthorsById(authorController, keyboardInput);
                             continue;
                         }
                         case "8" -> {
-                            crudMenuHelper.createAuthors(authorController, keyboardInput);
+                            menuHelper.createAuthors(authorController, keyboardInput);
                             continue;
                         }
                         case "9" -> {
-                            crudMenuHelper.updateAuthors(authorController, keyboardInput);
+                            menuHelper.updateAuthors(authorController, keyboardInput);
                             continue;
                         }
                         case "10" -> {
-                            crudMenuHelper.deleteAuthors(authorController, keyboardInput);
+                            menuHelper.deleteAuthors(authorController, keyboardInput);
                             continue;
                         }
                         case "0" -> {
