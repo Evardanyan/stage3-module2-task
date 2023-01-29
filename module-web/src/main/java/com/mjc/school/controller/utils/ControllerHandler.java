@@ -34,7 +34,7 @@ public class ControllerHandler {
     public void getNewsById() {
         System.out.println(Operation.GET_NEWS_BY_ID.getOperation());
         System.out.println("Enter news id:");
-        System.out.println((Object) newsController.readById(Long.valueOf(this.getKeyboardNumber("News Id", keyboard))));
+        System.out.println(newsController.readById(Long.valueOf(this.getKeyboardNumber("News Id", keyboard))));
     }
 
     @CommandHandler(operation = "3")
@@ -56,7 +56,7 @@ public class ControllerHandler {
                 System.out.println(ex.getMessage());
             }
         }
-        System.out.println((Object) newsController.create(dtoRequest));
+        System.out.println(newsController.create(dtoRequest));
     }
 
     @CommandHandler(operation = "4")
@@ -80,7 +80,7 @@ public class ControllerHandler {
                 System.out.println(ex.getMessage());
             }
         }
-        System.out.println((Object) newsController.update(dtoRequest));
+        System.out.println(newsController.update(dtoRequest));
     }
 
     @CommandHandler(operation = "5")
@@ -102,7 +102,7 @@ public class ControllerHandler {
     public void getAuthorsById() {
         System.out.println(Operation.GET_AUTHOR_BY_ID.getOperation());
         System.out.println("Enter news id:");
-        System.out.println((Object) authorController.readById(Long.valueOf(this.getKeyboardNumber("Author Id", keyboard))));
+        System.out.println(authorController.readById(Long.valueOf(this.getKeyboardNumber("Author Id", keyboard))));
     }
 
     @CommandHandler(operation = "8")
@@ -122,7 +122,7 @@ public class ControllerHandler {
                 System.out.println(ex.getMessage());
             }
         }
-        System.out.println((Object) authorController.create(dtoRequest));
+        System.out.println(authorController.create(dtoRequest));
     }
 
     @CommandHandler(operation = "9")
@@ -142,7 +142,7 @@ public class ControllerHandler {
                 System.out.println(ex.getMessage());
             }
         }
-        System.out.println((Object) authorController.update(dtoRequest));
+        System.out.println(authorController.update(dtoRequest));
     }
 
     @CommandHandler(operation = "10")
