@@ -5,9 +5,4 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
     implementation group: 'org.springframework', name: 'spring-aop', version: '5.3.18'
     implementation 'org.aspectj:aspectjweaver:1.9.9'
-    testImplementation 'org.mockito:mockito-inline:4.0.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0'
-    // https://mvnrepository.com/artifact/org.springframework/spring-test
-
-
 }
