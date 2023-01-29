@@ -23,5 +23,4 @@ public class AuthorIdValidator {
         validator.validateAuthorId(id);
     }
 
-
 }

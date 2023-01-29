@@ -12,23 +12,16 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class MenuHelper {
+public class ControllerHandler {
 
     private final NewsController newsController;
     private final AuthorController authorController;
 
     private Scanner keyboard = new Scanner(System.in);
 
-    public MenuHelper(NewsController newsController, AuthorController authorController) {
+    private ControllerHandler(NewsController newsController, AuthorController authorController) {
         this.newsController = newsController;
         this.authorController = authorController;
-    }
-
-    public void printMainMenu() {
-        System.out.println("Enter the number of operation:");
-        for (Operation operation : Operation.values()) {
-            System.out.println(operation.getOperationWithNumber());
-        }
     }
 
     @CommandHandler(operation = "1")
