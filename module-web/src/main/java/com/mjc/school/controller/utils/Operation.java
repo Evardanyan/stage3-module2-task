@@ -1,4 +1,4 @@
-package com.mjc.school.controllertest.utils;
+package com.mjc.school.controller.utils;
 
 public enum Operation {
     GET_ALL_NEWS(1, "Get all news."),

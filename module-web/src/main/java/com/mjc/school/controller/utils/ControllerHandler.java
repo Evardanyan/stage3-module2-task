@@ -1,8 +1,8 @@
-package com.mjc.school.controllertest.utils;
+package com.mjc.school.controller.utils;
 
-import com.mjc.school.controllertest.annotation.CommandHandler;
-import com.mjc.school.controllertest.impl.AuthorController;
-import com.mjc.school.controllertest.impl.NewsController;
+import com.mjc.school.controller.annotation.CommandHandler;
+import com.mjc.school.controller.impl.AuthorController;
+import com.mjc.school.controller.impl.NewsController;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.ServiceErrorCodeMessage;
@@ -150,6 +150,12 @@ public class ControllerHandler {
         System.out.println(Operation.REMOVE_AUTHOR_BY_ID.getOperation());
         System.out.println("Enter author id:");
         System.out.println(authorController.deleteById(Long.valueOf(this.getKeyboardNumber("Author Id", keyboard))));
+    }
+
+    @CommandHandler(operation = "0")
+    public void appExit() {
+        System.out.println("Have Good day! Bye!");
+        System.exit(0);
     }
 
     private long getKeyboardNumber(String params, Scanner keyboard) {

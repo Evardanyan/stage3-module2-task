@@ -1,14 +1,13 @@
 package com.mjc.school.utils;
 
-import com.mjc.school.controllertest.annotation.CommandHandler;
-import com.mjc.school.controllertest.utils.ControllerHandler;
+import com.mjc.school.controller.annotation.CommandHandler;
+import com.mjc.school.controller.utils.ControllerHandler;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Component

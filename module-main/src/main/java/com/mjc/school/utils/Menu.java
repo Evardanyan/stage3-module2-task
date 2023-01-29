@@ -1,6 +1,6 @@
 package com.mjc.school.utils;
 
-import com.mjc.school.controllertest.utils.Operation;
+import com.mjc.school.controller.utils.Operation;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -22,10 +22,6 @@ public class Menu {
             printMainMenu();
             key = keyboardInput.nextLine();
             if (checkInput(key)) {
-                if (key.equals("0")) {
-                    System.out.println("Have Good day! Bye!");
-                    break;
-                }
                 menuCommandHandler.executeMenu(key);
             } else {
                 System.out.println("Please input only number from 1-10");
