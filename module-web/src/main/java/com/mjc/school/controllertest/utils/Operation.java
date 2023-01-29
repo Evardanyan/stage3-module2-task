@@ -1,6 +1,6 @@
-package com.mjc.school.utils;
+package com.mjc.school.controllertest.utils;
 
-public enum Operations {
+public enum Operation {
     GET_ALL_NEWS(1, "Get all news."),
     GET_NEWS_BY_ID(2, "Get news by id."),
     CREATE_NEWS(3, "Create news."),
@@ -18,7 +18,7 @@ public enum Operations {
     public final String operation;
 
 
-    private Operations(Integer operationNum, String operation) {
+    private Operation(Integer operationNum, String operation) {
         this.operationNum = operationNum;
         this.operation = operation;
     }

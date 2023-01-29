@@ -38,6 +38,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @Override
     @ValidateNewsId
     public NewsDtoResponse readById(Long id) {
+        System.out.println("test");
         if (this.baseRepository.existById(id)) {
             NewsModel newsModel = this.baseRepository.readById(id).get();
             return this.mapper.modelToDto(newsModel);

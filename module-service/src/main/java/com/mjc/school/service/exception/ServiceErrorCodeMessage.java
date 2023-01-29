@@ -10,7 +10,9 @@ public enum ServiceErrorCodeMessage {
     VALIDATE_INT_VALUE("006", "%s should be number"),
 
     AUTHOR_ID_ALREADY_EXIST("007","Author Id already exist. Author Id is: %s"),
-    NEWS_ID_ALREADY_EXIST("007","News Id already exist. Author Id is: %s");
+    NEWS_ID_ALREADY_EXIST("008","News Id already exist. Author Id is: %s");
+
+
 
     public final String code;
     public final String msg;
