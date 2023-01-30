@@ -19,17 +19,22 @@ public class Utils {
     public static String getRandomContentByFilePath(String fileName) {
         final Random random = getRandom();
         final int numLines = 30;
-        try {
             final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             final InputStream inputStream = classLoader.getResourceAsStream(fileName);
             final InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             final BufferedReader reader = new BufferedReader(streamReader);
-            String resultLine;
-            for (int randomLine = random.nextInt(numLines), lineNum = 0; (resultLine = reader.readLine()) != null && lineNum != randomLine; ++lineNum) {
+            String contentFromFile;
+            contentFromFile = getFileContent(random, numLines, reader);
+            return contentFromFile;
+    }
+
+    private static String getFileContent(Random random, int numLines, BufferedReader reader)  {
+        String content;
+        try {
+            for (int randomLine = random.nextInt(numLines), lineNum = 0; (content = reader.readLine()) != null && lineNum != randomLine; ++lineNum) {
             }
-            return resultLine;
-        } catch (IOException e) {
-            e.printStackTrace();
+            return content;
+        } catch (IOException ex) {
             return "We have issue to read file";
         }
     }
