@@ -17,6 +17,10 @@ public class Menu {
     public void start() {
         Scanner keyboardInput = new Scanner(System.in);
         boolean exit = false;
+        startUtil(keyboardInput, exit);
+    }
+
+    private void startUtil(Scanner keyboardInput, boolean exit) {
         while (!exit) {
             String key;
             printMainMenu();
