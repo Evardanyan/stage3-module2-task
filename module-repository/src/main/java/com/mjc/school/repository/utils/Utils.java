@@ -12,11 +12,12 @@ import java.util.Random;
 
 public class Utils {
 
+    private static Random RANDOM_INSTANCE;
     private Utils() {
     }
 
     public static String getRandomContentByFilePath(String fileName) {
-        final Random random = new Random();
+        final Random random = getRandom();
         final int numLines = 30;
         try {
             final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -33,10 +34,16 @@ public class Utils {
         }
     }
 
+    private static Random getRandom() {
+        if(RANDOM_INSTANCE == null) {
+            RANDOM_INSTANCE = new Random();
+        }
+        return RANDOM_INSTANCE;
+    }
 
 
     public static LocalDateTime getRandomDate() {
-        final Random random = new Random();
+        final Random random = getRandom();
         final int endDay = 30;
         final LocalDate day = LocalDate.now().plusDays(random.nextInt(endDay));
         final int hour = random.nextInt(24);
