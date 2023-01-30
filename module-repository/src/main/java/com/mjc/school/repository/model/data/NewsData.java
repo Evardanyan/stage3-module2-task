@@ -15,8 +15,6 @@ import java.util.Random;
 @Component
 public class NewsData {
 
-    private static final String CONTENT_FILE_NAME = "content";
-    private static final String NEWS_FILE_NAME = "news";
     private List<NewsModel> newsList;
 
     private AuthorData authorData;
@@ -25,11 +23,11 @@ public class NewsData {
         this.authorData = authorData;
     }
 
+    final Random random = new Random();
     @PostConstruct
     public void init() {
         List<AuthorModel> authorModelList = authorData.getAuthorList();
-        this.newsList = new ArrayList<NewsModel>();
-        final Random random = new Random();
+        this.newsList = new ArrayList<>();
         for (long i = 1L; i <= 20L; ++i) {
             final LocalDateTime date = Utils.getRandomDate();
             this.newsList.add(new NewsModel(i, Utils.getRandomContentByFilePath("news"), Utils.getRandomContentByFilePath("content"), date, date, authorModelList.get(random.nextInt(authorModelList.size())).getId()));

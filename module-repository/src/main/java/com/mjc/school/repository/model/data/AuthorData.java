@@ -13,7 +13,6 @@ import java.util.List;
 @Component
 public class AuthorData {
 
-    private static final String AUTHORS_FILE_NAME = "authors";
     private List<AuthorModel> authorList;
 
     @PostConstruct

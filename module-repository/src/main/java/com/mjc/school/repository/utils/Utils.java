@@ -1,7 +1,5 @@
 package com.mjc.school.repository.utils;
 
-import org.springframework.core.io.ClassPathResource;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Utils {
 
