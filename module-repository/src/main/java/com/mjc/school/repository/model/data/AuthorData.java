@@ -17,7 +17,7 @@ public class AuthorData {
 
     @PostConstruct
     public void init() {
-        this.authorList = new ArrayList<AuthorModel>();
+        this.authorList = new ArrayList<>();
         for (long i = 1L; i <= 20L; ++i) {
             final LocalDateTime date = Utils.getRandomDate();
             this.authorList.add(new AuthorModel(i, Utils.getRandomContentByFilePath("authors"), date, date));

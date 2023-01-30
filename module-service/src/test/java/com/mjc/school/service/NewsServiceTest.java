@@ -30,7 +30,7 @@ class NewsServiceTest {
     private NewsService newsService;
 
     @BeforeEach
-    public void init() throws NotFoundException {
+    void init() throws NotFoundException {
 
         NewsModelMapper mapper = Mappers.getMapper(NewsModelMapper.class);
 
@@ -53,7 +53,7 @@ class NewsServiceTest {
 
     @DisplayName("JUnit test for create method")
     @Test
-    public void shouldCreateNewsModelSuccessFully() throws NotFoundException {
+    void shouldCreateNewsModelSuccessFully() throws NotFoundException {
 
         NewsDtoRequest newsDtoRequest = new NewsDtoRequest(null, "Testing NewsService", "JUnit test", 20L);
 
@@ -67,7 +67,7 @@ class NewsServiceTest {
 
     @DisplayName("JUnit test for update method")
     @Test
-    public void shouldUpdateNewsModelSuccessFully() throws NotFoundException {
+    void shouldUpdateNewsModelSuccessFully() throws NotFoundException {
 
         Long id = 20L;
         Long authorId = 19L;
@@ -88,7 +88,7 @@ class NewsServiceTest {
 
     @DisplayName("JUnit test for findAll method")
     @Test
-    public void findAll() throws NotFoundException {
+    void findAll() throws NotFoundException {
 
         List<NewsDtoResponse> newsDtoResponseList = newsService.readAll();
 
@@ -97,7 +97,7 @@ class NewsServiceTest {
 
     @DisplayName("JUnit test for findById method")
     @Test
-    public void findById() throws NotFoundException {
+    void findById() throws NotFoundException {
         Long expectedId = 1L;
 
         NewsDtoResponse expected = newsService.readById(1L);
@@ -112,7 +112,7 @@ class NewsServiceTest {
 
     @DisplayName("JUnit test for deleteById method")
     @Test
-    public void shouldBeDelete() throws NotFoundException {
+    void shouldBeDelete() throws NotFoundException {
         Long newsId = 1L;
 
         assertTrue(newsService.deleteById(newsId));
@@ -121,7 +121,7 @@ class NewsServiceTest {
     }
 
     @AfterEach
-    public void cleanData() {
+    void cleanData() {
         newsRepository = null;
         newsService = null;
     }

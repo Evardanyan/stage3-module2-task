@@ -30,7 +30,7 @@ class AuthorServiceTest {
     private AuthorService authorService;
 
     @BeforeEach
-    public void init() throws NotFoundException {
+    void init() throws NotFoundException {
 
         AuthorModelMapper mapper = Mappers.getMapper(AuthorModelMapper.class);
 
@@ -53,7 +53,7 @@ class AuthorServiceTest {
 
     @DisplayName("JUnit test for create method")
     @Test
-    public void shouldCreateNewsModelSuccessFully() throws NotFoundException {
+    void shouldCreateNewsModelSuccessFully() throws NotFoundException {
 
         AuthorDtoRequest authorDtoRequest = new AuthorDtoRequest(21L, "Edgar Vardanyan");
 
@@ -67,7 +67,7 @@ class AuthorServiceTest {
 
     @DisplayName("JUnit test for update method")
     @Test
-    public void shouldUpdateNewsModelSuccessFully() throws NotFoundException {
+    void shouldUpdateNewsModelSuccessFully() throws NotFoundException {
 
         Long id = 20L;
         String name = "Edgar Vardanyan";
@@ -85,7 +85,7 @@ class AuthorServiceTest {
 
     @DisplayName("JUnit test for findAll method")
     @Test
-    public void findAll() throws NotFoundException {
+    void findAll() throws NotFoundException {
 
         List<AuthorDtoResponse> authorDtoResponseList = authorService.readAll();
 
@@ -94,7 +94,7 @@ class AuthorServiceTest {
 
     @DisplayName("JUnit test for findById method")
     @Test
-    public void findById() throws NotFoundException {
+    void findById() throws NotFoundException {
         Long expectedId = 1L;
 
         AuthorDtoResponse expected = authorService.readById(1L);
@@ -109,7 +109,7 @@ class AuthorServiceTest {
 
     @DisplayName("JUnit test for deleteById method")
     @Test
-    public void shouldBeDelete() throws NotFoundException {
+    void shouldBeDelete() throws NotFoundException {
         Long newsId = 1L;
 
         assertTrue(authorService.deleteById(newsId));
@@ -118,7 +118,7 @@ class AuthorServiceTest {
     }
 
     @AfterEach
-    public void cleanData() {
+    void cleanData() {
         authorRepository = null;
         authorService = null;
     }

@@ -32,7 +32,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
 
     @Override
     public List<NewsDtoResponse> readAll() {
-        return (List<NewsDtoResponse>) this.mapper.modelListToDtoList(this.baseRepository.readAll());
+        return  this.mapper.modelListToDtoList(this.baseRepository.readAll());
     }
 
     @Override

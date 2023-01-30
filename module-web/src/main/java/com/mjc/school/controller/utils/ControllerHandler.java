@@ -17,6 +17,11 @@ public class ControllerHandler {
     private final NewsController newsController;
     private final AuthorController authorController;
 
+    private final String  AUTHOR_ID = "Author Id";
+    private final String  NEWS_ID = "News Id";
+    private final String  ENTER_AUTHOR_ID = "Enter Author Id";
+    private final String  ENTER_NEWS_ID = "Enter News Id";
+
     private Scanner keyboard = new Scanner(System.in);
 
     private ControllerHandler(NewsController newsController, AuthorController authorController) {
@@ -33,8 +38,8 @@ public class ControllerHandler {
     @CommandHandler(operation = "2")
     public void getNewsById() {
         System.out.println(Operation.GET_NEWS_BY_ID.getOperation());
-        System.out.println("Enter news id:");
-        System.out.println(newsController.readById(Long.valueOf(this.getKeyboardNumber("News Id", keyboard))));
+        System.out.println(ENTER_NEWS_ID);
+        System.out.println(newsController.readById(Long.valueOf(this.getKeyboardNumber(NEWS_ID, keyboard))));
     }
 
     @CommandHandler(operation = "3")
@@ -48,8 +53,8 @@ public class ControllerHandler {
                 String title = keyboard.nextLine();
                 System.out.println("Enter news content:");
                 String content = keyboard.nextLine();
-                System.out.println("Enter author id:");
-                Long authorId = this.getKeyboardNumber("Author Id", keyboard);
+                System.out.println(ENTER_AUTHOR_ID);
+                Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 dtoRequest = new NewsDtoRequest(null, title, content, authorId);
                 isValid = true;
             } catch (Exception ex) {
@@ -66,14 +71,14 @@ public class ControllerHandler {
         while (!isValid) {
             try {
                 System.out.println(Operation.UPDATE_NEWS.getOperation());
-                System.out.println("Enter news id:");
-                Long newsId = this.getKeyboardNumber("News Id", keyboard);
+                System.out.println(ENTER_NEWS_ID);
+                Long newsId = this.getKeyboardNumber(NEWS_ID, keyboard);
                 System.out.println("Enter news title:");
                 String title = keyboard.nextLine();
                 System.out.println("Enter news content:");
                 String content = keyboard.nextLine();
-                System.out.println("Enter author id:");
-                Long authorId = this.getKeyboardNumber("Author Id", keyboard);
+                System.out.println(ENTER_AUTHOR_ID);
+                Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 dtoRequest = new NewsDtoRequest(newsId, title, content, authorId);
                 isValid = true;
             } catch (Exception ex) {
@@ -86,8 +91,8 @@ public class ControllerHandler {
     @CommandHandler(operation = "5")
     public void deleteNews() {
         System.out.println(Operation.REMOVE_NEWS_BY_ID.getOperation());
-        System.out.println("Enter news id:");
-        System.out.println(newsController.deleteById(Long.valueOf(this.getKeyboardNumber("News Id", keyboard))));
+        System.out.println(ENTER_NEWS_ID);
+        System.out.println(newsController.deleteById(Long.valueOf(this.getKeyboardNumber(NEWS_ID, keyboard))));
     }
 
 
@@ -101,8 +106,8 @@ public class ControllerHandler {
     @CommandHandler(operation = "7")
     public void getAuthorsById() {
         System.out.println(Operation.GET_AUTHOR_BY_ID.getOperation());
-        System.out.println("Enter news id:");
-        System.out.println(authorController.readById(Long.valueOf(this.getKeyboardNumber("Author Id", keyboard))));
+        System.out.println(ENTER_AUTHOR_ID);
+        System.out.println(authorController.readById(Long.valueOf(this.getKeyboardNumber(AUTHOR_ID, keyboard))));
     }
 
     @CommandHandler(operation = "8")
@@ -112,8 +117,8 @@ public class ControllerHandler {
         while (!isValid) {
             try {
                 System.out.println(Operation.CREATE_AUTHOR.getOperation());
-                System.out.println("Enter author id:");
-                Long authorId = this.getKeyboardNumber("Author Id", keyboard);
+                System.out.println(ENTER_AUTHOR_ID);
+                Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 System.out.println("Enter author name:");
                 String authorName = keyboard.nextLine();
                 dtoRequest = new AuthorDtoRequest(authorId, authorName);
@@ -132,8 +137,8 @@ public class ControllerHandler {
         while (!isValid) {
             try {
                 System.out.println(Operation.UPDATE_NEWS.getOperation());
-                System.out.println("Enter author id:");
-                Long authorId = this.getKeyboardNumber("Author Id", keyboard);
+                System.out.println(ENTER_AUTHOR_ID);
+                Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 System.out.println("Enter author name:");
                 String authorName = keyboard.nextLine();
                 dtoRequest = new AuthorDtoRequest(authorId, authorName);
@@ -148,8 +153,8 @@ public class ControllerHandler {
     @CommandHandler(operation = "10")
     public void deleteAuthors() {
         System.out.println(Operation.REMOVE_AUTHOR_BY_ID.getOperation());
-        System.out.println("Enter author id:");
-        System.out.println(authorController.deleteById(Long.valueOf(this.getKeyboardNumber("Author Id", keyboard))));
+        System.out.println(ENTER_AUTHOR_ID);
+        System.out.println(authorController.deleteById(Long.valueOf(this.getKeyboardNumber(AUTHOR_ID, keyboard))));
     }
 
     @CommandHandler(operation = "0")

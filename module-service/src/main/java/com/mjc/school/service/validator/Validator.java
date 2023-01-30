@@ -1,13 +1,9 @@
 package com.mjc.school.service.validator;
 
-import com.mjc.school.repository.utils.DataSource;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.ServiceErrorCodeMessage;
 import com.mjc.school.service.exception.ValidatorException;
-import com.mjc.school.service.impl.AuthorService;
-import com.mjc.school.service.impl.NewsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

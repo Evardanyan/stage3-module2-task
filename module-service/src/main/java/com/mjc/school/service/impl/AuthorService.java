@@ -30,7 +30,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
 
     @Override
     public List<AuthorDtoResponse> readAll() {
-        return (List<AuthorDtoResponse>) this.mapper.modelListToDtoList(this.baseRepository.readAll());
+        return this.mapper.modelListToDtoList(this.baseRepository.readAll());
     }
 
     @Override
