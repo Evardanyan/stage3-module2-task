@@ -18,4 +18,17 @@ public interface AuthorModelMapper {
     @Mappings(value={@Mapping(target="createDate", ignore=true), @Mapping(target="lastUpdatedDate", ignore=true)})
     public AuthorModel dtoToModel(AuthorDtoRequest var1);
 
+
+//    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "name", target = "name")
+//    AuthorModel dtoToModel(AuthorDtoRequest dto);
+//
+//    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "name", target = "name")
+//    AuthorDtoResponse modelToDto(AuthorModel model);
+//
+//    List<AuthorDtoResponse> modelListToDtoList(List<AuthorModel> models);
+//
+//    List<AuthorModel> dtoListToModelList(List<AuthorDtoRequest> dtos);
+
 }

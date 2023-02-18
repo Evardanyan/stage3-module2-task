@@ -2,6 +2,7 @@ package com.mjc.school.service.validator;
 
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
+import com.mjc.school.service.dto.TagDtoRequest;
 import com.mjc.school.service.exception.ServiceErrorCodeMessage;
 import com.mjc.school.service.exception.ValidatorException;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ public class Validator {
     private final String NEWS_ID = "News id";
     private final String NEWS_CONTENT = "News content";
     private final String AUTHOR_ID = "Author id";
+    private final String TAG_ID = "Tag id";
     private final String NEWS_TITLE = "News title";
     private final Integer NEWS_CONTENT_MIN_LENGTH = 5;;
     private final Integer NEWS_CONTENT_MAX_LENGTH = 255;
@@ -20,6 +22,9 @@ public class Validator {
     private final Integer AUTHOR_NAME_LENGTH_MIN = 3;
     private final Integer AUTHOR_NAME_LENGTH_MAX = 15;
 
+    private final Integer TAG_NAME_LENGTH_MIN = 3;
+    private final Integer TAG_NAME_LENGTH_MAX = 15;
+
 
     public void validateNewsId(Long newsId) {
         this.validateNumber(newsId, NEWS_ID);
@@ -27,6 +32,10 @@ public class Validator {
 
     public void validateAuthorId(Long authorId) {
         this.validateNumber(authorId, AUTHOR_ID);
+    }
+
+    public void validateTagId(Long tagId) {
+        this.validateNumber(tagId, AUTHOR_ID);
     }
 
     public void validateNewsDto(NewsDtoRequest dtoRequest) {
@@ -39,10 +48,22 @@ public class Validator {
         this.validateAuthorName(dtoRequest.name());
     }
 
+    public void validateTagDto(TagDtoRequest dtoRequest) {
+        this.validateTagName(dtoRequest.name());
+    }
+
     public void validateAuthorName(String name) {
         if (name == null) {
             throw new ValidatorException("Name cannot be null.");
         } else if (name.trim().length() < AUTHOR_NAME_LENGTH_MIN || name.trim().length() > AUTHOR_NAME_LENGTH_MAX) {
+            throw new ValidatorException("Name length should be between 3 and 15 characters.");
+        }
+    }
+
+    public void validateTagName(String name) {
+        if (name == null) {
+            throw new ValidatorException("Name cannot be null.");
+        } else if (name.trim().length() < TAG_NAME_LENGTH_MIN || name.trim().length() > TAG_NAME_LENGTH_MAX) {
             throw new ValidatorException("Name length should be between 3 and 15 characters.");
         }
     }

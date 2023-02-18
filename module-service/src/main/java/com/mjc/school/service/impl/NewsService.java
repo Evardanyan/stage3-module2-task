@@ -50,9 +50,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     public NewsDtoResponse create(NewsDtoRequest dtoRequest) {
         if (!this.baseRepository.existById(dtoRequest.id())) {
             NewsModel model = this.mapper.dtoToModel(dtoRequest);
-            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-            model.setCreateDate(date);
-            model.setLastUpdatedDate(date);
+//            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
             NewsModel newsModel = this.baseRepository.create(model);
             return this.mapper.modelToDto(newsModel);
         }
@@ -66,8 +64,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     public NewsDtoResponse update(NewsDtoRequest dtoRequest) {
         if (this.baseRepository.existById(dtoRequest.id())) {
             NewsModel model = this.mapper.dtoToModel(dtoRequest);
-            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-            model.setLastUpdatedDate(date);
+//            LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
             NewsModel newsModel = this.baseRepository.update(model);
             return this.mapper.modelToDto(newsModel);
         }

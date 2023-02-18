@@ -1,22 +1,44 @@
 package com.mjc.school.repository.model.impl;
 
 import com.mjc.school.repository.model.BaseEntity;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "Author")
 public class AuthorModel implements BaseEntity<Long> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private LocalDateTime createDate;
-    private LocalDateTime lastUpdatedDate;
 
-    public AuthorModel(Long id, String name, LocalDateTime createDate, LocalDateTime lastUpdatedDate) {
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_updated_date")
+    private Date lastUpdatedDate;
+
+
+    @OneToMany(mappedBy = "authorModel", cascade = CascadeType.REMOVE)
+    private List<NewsModel> news;
+
+
+
+    public AuthorModel(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.createDate = createDate;
-        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     public AuthorModel() {
@@ -40,33 +62,34 @@ public class AuthorModel implements BaseEntity<Long> {
         this.name = name;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getLastUpdatedDate() {
+    public Date getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AuthorModel authorModel = (AuthorModel) o;
-        return Objects.equals(id, authorModel.id) && Objects.equals(name, authorModel.name) && Objects.equals(createDate, authorModel.createDate) && Objects.equals(lastUpdatedDate, authorModel.lastUpdatedDate);
+        return Objects.equals(id, authorModel.id) && Objects.equals(name, authorModel.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createDate, lastUpdatedDate);
+        return Objects.hash(id, name);
     }
 
     @Override
@@ -75,7 +98,7 @@ public class AuthorModel implements BaseEntity<Long> {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createDate=" + createDate +
-                ", lastUpdateDate=" + lastUpdatedDate +
+                ", lastUpdatedDate=" + lastUpdatedDate +
                 '}';
     }
 }

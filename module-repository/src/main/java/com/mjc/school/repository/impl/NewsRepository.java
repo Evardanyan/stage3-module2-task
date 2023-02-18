@@ -2,71 +2,63 @@ package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.impl.NewsModel;
-import com.mjc.school.repository.utils.DataSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 
 @Repository
+@Transactional
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-    private final DataSource dataSource;
 
-    public NewsRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<NewsModel> readAll() {
-        return this.dataSource.getNews();
+        return entityManager.createQuery("SELECT n FROM NewsModel n", NewsModel.class).getResultList();
     }
 
     @Override
     public Optional<NewsModel> readById(Long newsId) {
-        return this.dataSource.getNews().stream().filter(news -> newsId.equals(news.getId())).findFirst();
+        NewsModel newsModel = entityManager.find(NewsModel.class, newsId);
+        return Optional.ofNullable(newsModel);
     }
 
     @Override
     public NewsModel create(NewsModel model) {
-        List<NewsModel> newsModel = this.dataSource.getNews();
-        newsModel.sort(Comparator.comparing((NewsModel::getId)));
-        if (!newsModel.isEmpty()) {
-            model.setId(newsModel.get(newsModel.size() - 1).getId() + 1L);
-        }
-        else {
-            model.setId(1L);
-        }
-        newsModel.add(model);
+        entityManager.persist(model);
         return model;
     }
 
     @Override
     public NewsModel update(NewsModel model) {
-        Optional<NewsModel> newsModel = this.readById(model.getId());
-        newsModel.get().setTitle(model.getTitle());
-        newsModel.get().setContent(model.getContent());
-        newsModel.get().setLastUpdatedDate(model.getLastUpdatedDate());
-        newsModel.get().setAuthorId(model.getAuthorId());
-        return newsModel.get();
+        NewsModel newsModel = entityManager.find(NewsModel.class, model.getId());
+        newsModel.setTitle(model.getTitle());
+        newsModel.setContent(model.getContent());
+        return entityManager.merge(newsModel);
     }
 
     @Override
     public boolean deleteById(Long newsId) {
-        final List<NewsModel> deleteList = new ArrayList<>();
-        deleteList.add(this.readById(newsId).get());
-        return this.dataSource.getNews().removeAll(deleteList);
+        NewsModel newsModel = entityManager.find(NewsModel.class, newsId);
+        if (newsModel != null) {
+            entityManager.remove(newsModel);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public boolean  existById(Long newsId) {
-        if (Objects.isNull(newsId)) {
-            return false;
-        }
-        return this.dataSource.getNews().stream().anyMatch(news -> newsId.equals(news.getId()));
-
+    public boolean existById(Long newsId) {
+        return entityManager.createQuery("SELECT COUNT(n) FROM NewsModel n WHERE n.id = :id", Long.class)
+                .setParameter("id", newsId)
+                .getSingleResult() > 0;
     }
 
 }

@@ -1,6 +1,8 @@
-rootProject.name = 'stage3-module2-task'
+rootProject.name = 'stage3-module3-task-alpha'
 
 include 'module-repository'
 include 'module-service'
 include 'module-web'
 include 'module-main'
+include 'module-hibernate'
+

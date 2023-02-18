@@ -12,6 +12,13 @@ public enum Operation {
     CREATE_AUTHOR(8, "Create authors."),
     UPDATE_AUTHOR(9, "Update authors."),
     REMOVE_AUTHOR_BY_ID(10, "Remove authors by id."),
+
+
+    GET_ALL_TAG(11, "Get all tags."),
+    GET_TAG_BY_ID(12, "Get tags by id."),
+    CREATE_TAG(13, "Create tags."),
+    UPDATE_TAG(14, "Update tags."),
+    REMOVE_TAG_BY_ID(15, "Remove tags by id."),
     EXIT(0, "Exit.");
 
     public final Integer operationNum;
