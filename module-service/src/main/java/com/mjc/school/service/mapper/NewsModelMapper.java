@@ -7,11 +7,14 @@ import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.dto.TagDtoRequest;
 import org.mapstruct.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", uses = {AuthorModelMapper.class})
 public interface NewsModelMapper {
+
     List<NewsDtoResponse> modelListToDtoList(List<NewsModel> var1);
 
 //    @Mapping(target = "authorId", source = "authorModel.id")
@@ -36,6 +39,7 @@ public interface NewsModelMapper {
     default Long tagModelToTagId(List<TagModel> tagModel) {
         if (tagModel != null) {
             return tagModel.stream().findFirst().orElse(new TagModel()).getId();
+
         }
         return null;
     }
@@ -49,7 +53,8 @@ public interface NewsModelMapper {
     @Named("tagIdToTagModel")
     default List<TagModel> tagIdToTagModel(Long tagId) {
         if (tagId == null) {
-            return null;
+//            return null;
+            return Collections.emptyList();
         } else {
             return Collections.singletonList(new TagModel(tagId));
         }

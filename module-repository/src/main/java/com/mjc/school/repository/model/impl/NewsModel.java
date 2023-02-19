@@ -3,6 +3,7 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 @Entity
+//@Scope("prototype")
 @Table(name = "News")
 public class NewsModel implements BaseEntity<Long> {
 
@@ -41,12 +43,14 @@ public class NewsModel implements BaseEntity<Long> {
     @JoinColumn(name = "author_id")
     private AuthorModel authorModel;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name = "news_tag",
             joinColumns = @JoinColumn(name="news_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+
     private List<TagModel> tagModel;
 
     public NewsModel() {
@@ -58,6 +62,7 @@ public class NewsModel implements BaseEntity<Long> {
         this.content = content;
         this.authorModel = authorModel;
     }
+
 
 
     @Override

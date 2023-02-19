@@ -98,8 +98,13 @@ public class ControllerHandler {
                 String content = keyboard.nextLine();
                 System.out.println(ENTER_AUTHOR_ID);
                 Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
-                System.out.println(ENTER_AUTHOR_ID);
-                Long tagId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
+                System.out.println(TAG_ID);
+                Long tagId = null;
+//                Long tagId = this.getKeyboardNumber(TAG_ID, keyboard);
+                String tagIdInput = keyboard.nextLine();
+                if (!tagIdInput.isBlank()) {
+                    tagId = Long.parseLong(tagIdInput);
+                }
                 dtoRequest = new NewsDtoRequest(newsId, title, content, authorId, tagId);
                 isValid = true;
             } catch (Exception ex) {

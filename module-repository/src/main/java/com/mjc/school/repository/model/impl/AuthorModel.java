@@ -3,6 +3,7 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+//@Scope("prototype")
 @Table(name = "Author")
 public class AuthorModel implements BaseEntity<Long> {
 
@@ -22,12 +24,12 @@ public class AuthorModel implements BaseEntity<Long> {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
-    private LocalDateTime createDate;
+    private Date createDate;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_updated_date")
-    private LocalDateTime lastUpdatedDate;
+    private Date lastUpdatedDate;
 
 
     @OneToMany(mappedBy = "authorModel", cascade = CascadeType.REMOVE)
@@ -63,19 +65,19 @@ public class AuthorModel implements BaseEntity<Long> {
         this.name = name;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getLastUpdatedDate() {
+    public Date getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
