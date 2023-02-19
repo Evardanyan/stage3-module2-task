@@ -46,16 +46,6 @@ public interface NewsModelMapper {
     NewsModel dtoToModel(NewsDtoRequest var1);
 
 
-
-//    @Named("tagIdToTagModel")
-//    public static List<TagModel> tagIdToTagModel(Long tagId) {
-//        List<TagModel> tagModels = new ArrayList<>();
-//        TagModel tagModel = new TagModel();
-//        tagModel.setId(tagId);
-//        tagModels.add(tagModel);
-//        return tagModels;
-//    }
-
     @Named("tagIdToTagModel")
     default List<TagModel> tagIdToTagModel(Long tagId) {
         if (tagId == null) {

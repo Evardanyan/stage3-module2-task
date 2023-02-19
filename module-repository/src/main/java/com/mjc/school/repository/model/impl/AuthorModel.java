@@ -1,12 +1,11 @@
 package com.mjc.school.repository.model.impl;
 
 import com.mjc.school.repository.model.BaseEntity;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -23,18 +22,20 @@ public class AuthorModel implements BaseEntity<Long> {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_updated_date")
-    private Date lastUpdatedDate;
+    private LocalDateTime lastUpdatedDate;
 
 
     @OneToMany(mappedBy = "authorModel", cascade = CascadeType.REMOVE)
     private List<NewsModel> news;
 
-
+    public AuthorModel(String name) {
+        this.name = name;
+    }
 
     public AuthorModel(Long id, String name) {
         this.id = id;
@@ -62,19 +63,19 @@ public class AuthorModel implements BaseEntity<Long> {
         this.name = name;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public Date getLastUpdatedDate() {
+    public LocalDateTime getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
+    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
