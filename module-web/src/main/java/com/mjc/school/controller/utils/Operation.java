@@ -6,7 +6,7 @@ public enum Operation {
     CREATE_NEWS(3, "Create news."),
     UPDATE_NEWS(4, "Update news."),
     REMOVE_NEWS_BY_ID(5, "Remove news by id."),
-
+    GET_TAG_BY_NEWS_ID(16, "Get tags by news id."),
     GET_ALL_AUTHOR(6, "Get all authors."),
     GET_AUTHOR_BY_ID(7, "Get authors by id."),
     CREATE_AUTHOR(8, "Create authors."),
@@ -38,7 +38,7 @@ public enum Operation {
         return operation;
     }
 
-    public String getOperationWithNumber () {
+    public String getOperationWithNumber() {
         return this.operationNum + " - " + this.operation;
     }
 }

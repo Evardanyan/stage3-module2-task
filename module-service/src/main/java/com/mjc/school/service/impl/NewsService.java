@@ -7,6 +7,7 @@ import com.mjc.school.repository.model.impl.NewsModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.annotation.ValidateNewsDto;
 import com.mjc.school.service.annotation.ValidateNewsId;
+import com.mjc.school.service.annotation.ValidateTagId;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.NotFoundException;
@@ -14,9 +15,8 @@ import com.mjc.school.service.exception.ServiceErrorCodeMessage;
 import com.mjc.school.service.mapper.NewsModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse, Long> {
@@ -28,6 +28,17 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     public NewsService(BaseRepository<NewsModel, Long> baseRepository, NewsModelMapper mapper) {
         this.baseRepository = baseRepository;
         this.mapper = mapper;
+    }
+
+    @ValidateTagId
+    public NewsDtoResponse readTagsByNewsId(Long newsId) {
+        Optional<NewsModel> newsModelOptional = baseRepository.readTagsByNewsId(newsId);
+        if (newsModelOptional.isPresent()) {
+            NewsModel newsModel = newsModelOptional.get();
+            return mapper.modelToDto(newsModel);
+        }
+        throw new NotFoundException(String.format(ServiceErrorCodeMessage.NEWS_ID_DOES_NOT_EXIST.getCodeMsg(), newsId));
+
     }
 
     @Override

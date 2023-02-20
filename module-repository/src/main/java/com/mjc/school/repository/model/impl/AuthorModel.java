@@ -3,10 +3,8 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +30,7 @@ public class AuthorModel implements BaseEntity<Long> {
     private Date lastUpdatedDate;
 
 
-    @OneToMany(mappedBy = "authorModel", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "authorModel", cascade = CascadeType.REMOVE)
     private List<NewsModel> news;
 
     public AuthorModel(String name) {

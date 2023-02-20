@@ -43,7 +43,7 @@ public class Menu {
     boolean checkInput(String input) {
         if (input.equals("10")) {
             return true;
-        } else if ((!Character.isDigit(input.charAt(0)) || input.length() > 2 || Integer.valueOf(input) > 15)) {
+        } else if ((!Character.isDigit(input.charAt(0)) || input.length() > 2 || Integer.valueOf(input) > 16)) {
             return false;
         }
         return true;

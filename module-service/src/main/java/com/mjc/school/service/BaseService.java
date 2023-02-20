@@ -12,4 +12,6 @@ public interface BaseService<T, R, K> {
     R update(T updateRequest);
 
     boolean deleteById(K id);
+
+    R readTagsByNewsId(K id);
 }

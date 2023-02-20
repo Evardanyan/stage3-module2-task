@@ -3,10 +3,11 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "news")
@@ -14,7 +15,7 @@ public class NewsModel implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
     private String title;
     private String content;
@@ -47,14 +48,14 @@ public class NewsModel implements BaseEntity<Long> {
         this.tagId = tagId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private AuthorModel authorModel;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "news_tag",
-            joinColumns = @JoinColumn(name="news_id"),
+            joinColumns = @JoinColumn(name = "news_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<TagModel> tagModels;
@@ -69,7 +70,6 @@ public class NewsModel implements BaseEntity<Long> {
         this.content = content;
         this.authorModel = authorModel;
     }
-
 
 
     @Override
@@ -123,15 +123,6 @@ public class NewsModel implements BaseEntity<Long> {
         this.tagModels = tagModels;
     }
 
-    public void addTagModel(TagModel tagModel) {
-
-        if (tagModels == null) {
-            tagModels = new ArrayList<>();
-        }
-
-        tagModels.add(tagModel);
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -142,13 +133,10 @@ public class NewsModel implements BaseEntity<Long> {
     }
 
 
-
     @Override
     public int hashCode() {
         return Objects.hash(id, title, content, createDate, lastUpdatedDate, authorModel, tagModels);
     }
-
-
 
 
     @Override
@@ -157,12 +145,10 @@ public class NewsModel implements BaseEntity<Long> {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
+                ", tagId=" + tagId +
                 ", createDate=" + createDate +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", authorModel=" + authorModel +
-                ", tagModel=" + tagModels +
                 '}';
     }
-
-
 }

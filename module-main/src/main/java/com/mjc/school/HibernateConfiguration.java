@@ -38,17 +38,6 @@ public class HibernateConfiguration {
         return dataSource;
     }
 
-//    private Properties hibernateProperties() {
-//        return new Properties() {
-//            {
-//                setProperty("hibernate.connection.pool_size", "3");
-////                setProperty("hibernate.current_session_context_class", "thread");
-//                setProperty("hibernate.hbm2ddl.auto", "create");
-//                setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-//                setProperty("hibernate.show_sql", "true");
-//            }
-//        };
-//    }
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();

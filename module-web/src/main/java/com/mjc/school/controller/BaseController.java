@@ -8,9 +8,12 @@ public interface BaseController<T, R, K> {
 
     R readById(K id);
 
+    R readTagsByNewsId(K id);
+
     R create(T createRequest);
 
     R update(T updateRequest);
 
     boolean deleteById(K id);
+
 }

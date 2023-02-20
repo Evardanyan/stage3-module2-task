@@ -47,4 +47,9 @@ public class AuthorController implements BaseController<AuthorDtoRequest, Author
     public boolean deleteById(Long id) {
         return service.deleteById(id);
     }
+
+    @Override
+    public AuthorDtoResponse readTagsByNewsId(Long id) {
+        return null;
+    }
 }

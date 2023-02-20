@@ -18,6 +18,7 @@ public class NewsController implements BaseController<NewsDtoRequest, NewsDtoRes
         this.service = service;
     }
 
+
     @Override
     @CommandHandler(operation = "1")
     public List<NewsDtoResponse> readAll() {
@@ -28,6 +29,12 @@ public class NewsController implements BaseController<NewsDtoRequest, NewsDtoRes
     @CommandHandler(operation = "2")
     public NewsDtoResponse readById(Long id) {
         return service.readById(id);
+    }
+
+
+    @CommandHandler(operation = "16")
+    public NewsDtoResponse readTagsByNewsId(Long id) {
+        return service.readTagsByNewsId(id);
     }
 
     @Override
@@ -47,4 +54,6 @@ public class NewsController implements BaseController<NewsDtoRequest, NewsDtoRes
     public boolean deleteById(Long id) {
         return service.deleteById(id);
     }
+
+
 }

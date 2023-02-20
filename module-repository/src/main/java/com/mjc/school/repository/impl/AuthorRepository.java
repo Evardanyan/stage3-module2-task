@@ -57,4 +57,9 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
                 .setParameter("id", id)
                 .getSingleResult() > 0;
     }
+
+    @Override
+    public Optional<AuthorModel> readTagsByNewsId(Long id) {
+        return Optional.empty();
+    }
 }

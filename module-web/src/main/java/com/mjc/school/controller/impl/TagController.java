@@ -3,8 +3,6 @@ package com.mjc.school.controller.impl;
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.controller.annotation.CommandHandler;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.dto.AuthorDtoRequest;
-import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.dto.TagDtoRequest;
 import com.mjc.school.service.dto.TagDtoResponse;
 import org.springframework.stereotype.Controller;
@@ -48,5 +46,10 @@ public class TagController implements BaseController<TagDtoRequest, TagDtoRespon
     @CommandHandler(operation = "15")
     public boolean deleteById(Long id) {
         return service.deleteById(id);
+    }
+
+    @Override
+    public TagDtoResponse readTagsByNewsId(Long id) {
+        return null;
     }
 }
