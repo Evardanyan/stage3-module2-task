@@ -41,58 +41,42 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public NewsModel create(NewsModel model) {
-        List<TagModel> existingTags = new ArrayList<>();
-        for (TagModel tag : model.getTagModel()) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>" + tag.getId());
-            if (tag.getId() != null) {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>" + tag.getId());
-                TagModel existingTag = entityManager.find(TagModel.class, tag.getId());
-                if (existingTag != null) {
-                    existingTags.add(existingTag);
+        if (model.getTagId() != null) {
+            List<TagModel> tagModels = entityManager.createQuery("SELECT t FROM TagModel t", TagModel.class).getResultList();
+            List<TagModel> existingTagModels = new ArrayList<>();
+            for (TagModel tagModel : tagModels) {
+                TagModel existingTagModel = entityManager.find(TagModel.class, model.getTagId());
+                if (existingTagModel != null) {
+                    existingTagModels.add(existingTagModel);
+                } else {
+                    existingTagModels.add(null);
                 }
             }
+            model.setTagModels(existingTagModels);
         }
-        model.setTagModel(existingTags);
         entityManager.persist(model);
         return model;
     }
 
-//    @Override
-//    public NewsModel create(NewsModel model) {
-//        // Get the existing TagModels by their IDs
-//        List<TagModel> existingTagModels = entityManager.createQuery("SELECT t FROM TagModel t WHERE t.id IN :ids", TagModel.class)
-//                .setParameter("ids", model.getTagModel().stream().map(TagModel::getId).collect(Collectors.toList()))
-//                .getResultList();
-//
-//        // Replace the tagModel list in the NewsModel with the existing TagModels
-//        List<TagModel> mergedTagModels = model.getTagModel().stream()
-//                .map(tag -> existingTagModels.stream().filter(existingTag -> existingTag.getId().equals(tag.getId())).findFirst().orElse(tag))
-//                .collect(Collectors.toList());
-//        model.setTagModel(mergedTagModels);
-//
-//        entityManager.persist(model);
-//        return model;
-//    }
 
     @Override
     public NewsModel update(NewsModel model) {
         NewsModel newsModel = entityManager.find(NewsModel.class, model.getId());
         newsModel.setTitle(model.getTitle());
         newsModel.setContent(model.getContent());
+        if (model.getTagId() != null) {
+            List<TagModel> tagModels = entityManager.createQuery("SELECT t FROM TagModel t", TagModel.class).getResultList();
+            List<TagModel> existingTagModels = new ArrayList<>();
+            TagModel existingTagModel = entityManager.find(TagModel.class, model.getTagId());
+            if (existingTagModel != null) {
+                existingTagModels.add(existingTagModel);
+            } else {
+                existingTagModels.add(null);
+            }
+            newsModel.setTagModels(existingTagModels);
+        }
         return entityManager.merge(newsModel);
     }
-//    @Override
-//    public NewsModel update(NewsModel model) {
-//        NewsModel newsModel = entityManager.find(NewsModel.class, model.getId());
-//        if (newsModel != null) {
-//            newsModel.setTitle(model.getTitle());
-//            newsModel.setContent(model.getContent());
-//            newsModel.setAuthorModel(model.getAuthorModel());
-//            newsModel.setTagModel(model.getTagModel());
-//            return entityManager.merge(newsModel);
-//        }
-//        return null;
-//    }
 
     @Override
     public boolean deleteById(Long newsId) {

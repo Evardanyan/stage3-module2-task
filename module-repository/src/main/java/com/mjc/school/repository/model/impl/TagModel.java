@@ -10,22 +10,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-//@Scope("prototype")
 @Table(name = "tag")
 public class TagModel implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="id")
     private Long id;
     private String name;
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "news_tag",
-//            joinColumns = @JoinColumn(name="tag_id"),
-//            inverseJoinColumns = @JoinColumn(name = "news_id")
-//    )
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tagModel")
+
+    @ManyToMany(mappedBy = "tagModels")
     private List<NewsModel> newsModel;
 
 

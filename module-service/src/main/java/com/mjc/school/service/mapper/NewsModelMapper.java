@@ -17,36 +17,22 @@ public interface NewsModelMapper {
 
     List<NewsDtoResponse> modelListToDtoList(List<NewsModel> var1);
 
-//    @Mapping(target = "authorId", source = "authorModel.id")
-//    @Mapping(target = "tagId", source = "tagModel", qualifiedByName = "tagModelToTagId")
-//    NewsDtoResponse modelToDto(NewsModel var1);
-//
-//    @Named("tagModelToTagId")
-//    default Long tagModelToTagId(List<TagModel> tagModel) {
-//        return tagModel.stream().findFirst().orElse(new TagModel()).getId();
-//    }
-//
-//
-//    @Mappings(value={@Mapping(target="createDate", ignore=true), @Mapping(target="lastUpdatedDate", ignore=true),
-//            @Mapping(target = "authorModel.id", source = "authorId")})
-//    NewsModel dtoToModel(NewsDtoRequest var1);
 
     @Mapping(target = "authorId", source = "authorModel.id")
-    @Mapping(target = "tagId", source = "tagModel", qualifiedByName = "tagModelToTagId")
+    @Mapping(target = "tagId", source = "tagModels", qualifiedByName = "tagModelToTagId")
     NewsDtoResponse modelToDto(NewsModel var1);
 
     @Named("tagModelToTagId")
-    default Long tagModelToTagId(List<TagModel> tagModel) {
-        if (tagModel != null) {
-            return tagModel.stream().findFirst().orElse(new TagModel()).getId();
-
+    default Long tagModelToTagId(List<TagModel> tagModels) {
+        if (tagModels != null) {
+            return tagModels.stream().findFirst().orElse(new TagModel()).getId();
         }
         return null;
     }
 
     @Mappings(value={@Mapping(target="createDate", ignore=true), @Mapping(target="lastUpdatedDate", ignore=true),
             @Mapping(target = "authorModel.id", source = "authorId")})
-    @Mapping(target = "tagModel", source = "tagId", qualifiedByName = "tagIdToTagModel")
+    @Mapping(target = "tagModels", source = "tagId", qualifiedByName = "tagIdToTagModel")
     NewsModel dtoToModel(NewsDtoRequest var1);
 
 

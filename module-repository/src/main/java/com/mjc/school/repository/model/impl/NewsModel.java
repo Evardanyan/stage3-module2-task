@@ -6,20 +6,20 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+
 @Entity
-//@Scope("prototype")
-@Table(name = "News")
+@Table(name = "news")
 public class NewsModel implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     private String title;
     private String content;
+
+    private Long tagId;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,19 +39,26 @@ public class NewsModel implements BaseEntity<Long> {
         this.authorModel = authorModel;
     }
 
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private AuthorModel authorModel;
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "news_tag",
             joinColumns = @JoinColumn(name="news_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    private List<TagModel> tagModels;
 
-    private List<TagModel> tagModel;
 
     public NewsModel() {
     }
@@ -108,26 +115,40 @@ public class NewsModel implements BaseEntity<Long> {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public List<TagModel> getTagModel() {
-        return tagModel;
+    public List<TagModel> getTagModels() {
+        return tagModels;
     }
 
-    public void setTagModel(List<TagModel> tagModel) {
-        this.tagModel = tagModel;
+    public void setTagModels(List<TagModel> tagModels) {
+        this.tagModels = tagModels;
     }
+
+    public void addTagModel(TagModel tagModel) {
+
+        if (tagModels == null) {
+            tagModels = new ArrayList<>();
+        }
+
+        tagModels.add(tagModel);
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NewsModel newsModel = (NewsModel) o;
-        return id.equals(newsModel.id) && title.equals(newsModel.title) && content.equals(newsModel.content) && createDate.equals(newsModel.createDate) && lastUpdatedDate.equals(newsModel.lastUpdatedDate) && authorModel.equals(newsModel.authorModel) && tagModel.equals(newsModel.tagModel);
+        return id.equals(newsModel.id) && title.equals(newsModel.title) && content.equals(newsModel.content) && createDate.equals(newsModel.createDate) && lastUpdatedDate.equals(newsModel.lastUpdatedDate) && authorModel.equals(newsModel.authorModel) && tagModels.equals(newsModel.tagModels);
     }
+
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, createDate, lastUpdatedDate, authorModel, tagModel);
+        return Objects.hash(id, title, content, createDate, lastUpdatedDate, authorModel, tagModels);
     }
+
+
 
 
     @Override
@@ -139,7 +160,9 @@ public class NewsModel implements BaseEntity<Long> {
                 ", createDate=" + createDate +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", authorModel=" + authorModel +
-                ", tagModel=" + tagModel +
+                ", tagModel=" + tagModels +
                 '}';
     }
+
+
 }
