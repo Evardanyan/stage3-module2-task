@@ -76,9 +76,4 @@ public class TagService implements BaseService<TagDtoRequest, TagDtoResponse, Lo
         }
         throw new NotFoundException(String.format(ServiceErrorCodeMessage.TAG_ID_DOES_NOT_EXIST.getCodeMsg(), id));
     }
-
-    @Override
-    public TagDtoResponse readTagsByNewsId(Long id) {
-        return null;
-    }
 }

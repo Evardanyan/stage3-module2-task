@@ -19,7 +19,7 @@ public class TagModel implements BaseEntity<Long> {
     private Long id;
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tagModels")
+    @ManyToMany(mappedBy = "tagModels")
     private List<NewsModel> newsModel;
 
 
@@ -78,6 +78,7 @@ public class TagModel implements BaseEntity<Long> {
         return "TagModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", newsModel=" + newsModel +
                 '}';
     }
 }

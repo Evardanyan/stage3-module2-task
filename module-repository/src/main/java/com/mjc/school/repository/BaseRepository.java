@@ -11,8 +11,6 @@ public interface BaseRepository<T extends BaseEntity<K>, K> {
 
     Optional<T> readById(K id);
 
-    Optional<T> readTagsByNewsId(K id);
-
     T create(T entity);
 
     T update(T entity);
@@ -20,7 +18,4 @@ public interface BaseRepository<T extends BaseEntity<K>, K> {
     boolean deleteById(K id);
 
     boolean existById(K id);
-
-
-
 }

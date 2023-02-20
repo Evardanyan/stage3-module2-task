@@ -3,6 +3,7 @@ package com.mjc.school.controller.utils;
 import com.mjc.school.controller.annotation.CommandHandler;
 import com.mjc.school.controller.impl.AuthorController;
 import com.mjc.school.controller.impl.NewsController;
+//import com.mjc.school.controller.impl.TagController;
 import com.mjc.school.controller.impl.TagController;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
@@ -20,12 +21,12 @@ public class ControllerHandler {
     private final AuthorController authorController;
     private final TagController tagController;
 
-    private final String AUTHOR_ID = "Author Id";
-    private final String NEWS_ID = "News Id";
-    private final String TAG_ID = "Tags Id(Optional)";
-    private final String ENTER_AUTHOR_ID = "Enter Author Id";
-    private final String ENTER_NEWS_ID = "Enter News Id";
-    private final String ENTER_TAG_ID = "Enter Tags Id";
+    private final String  AUTHOR_ID = "Author Id";
+    private final String  NEWS_ID = "News Id";
+    private final String  TAG_ID = "Tags Id(Optional)";
+    private final String  ENTER_AUTHOR_ID = "Enter Author Id";
+    private final String  ENTER_NEWS_ID = "Enter News Id";
+    private final String  ENTER_TAG_ID = "Enter Tags Id";
 
     private Scanner keyboard = new Scanner(System.in);
 
@@ -35,6 +36,10 @@ public class ControllerHandler {
         this.tagController = tagController;
     }
 
+//    private ControllerHandler(NewsController newsController, AuthorController authorController) {
+//        this.newsController = newsController;
+//        this.authorController = authorController;
+//    }
 
     @CommandHandler(operation = "1")
     public void getNews() {
@@ -47,13 +52,6 @@ public class ControllerHandler {
         System.out.println(Operation.GET_NEWS_BY_ID.getOperation());
         System.out.println(ENTER_NEWS_ID);
         System.out.println(newsController.readById(Long.valueOf(this.getKeyboardNumber(NEWS_ID, keyboard))));
-    }
-
-    @CommandHandler(operation = "16")
-    public void getTagsNewsById() {
-        System.out.println(Operation.GET_TAG_BY_NEWS_ID.getOperation());
-        System.out.println(ENTER_NEWS_ID);
-        System.out.println(newsController.readTagsByNewsId(Long.valueOf(this.getKeyboardNumber(NEWS_ID, keyboard))));
     }
 
     @CommandHandler(operation = "3")
@@ -71,6 +69,7 @@ public class ControllerHandler {
                 Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 System.out.println(TAG_ID);
                 Long tagId = null;
+//                Long tagId = this.getKeyboardNumber(TAG_ID, keyboard);
                 String tagIdInput = keyboard.nextLine();
                 if (!tagIdInput.isBlank()) {
                     tagId = Long.parseLong(tagIdInput);
@@ -101,6 +100,7 @@ public class ControllerHandler {
                 Long authorId = this.getKeyboardNumber(AUTHOR_ID, keyboard);
                 System.out.println(TAG_ID);
                 Long tagId = null;
+//                Long tagId = this.getKeyboardNumber(TAG_ID, keyboard);
                 String tagIdInput = keyboard.nextLine();
                 if (!tagIdInput.isBlank()) {
                     tagId = Long.parseLong(tagIdInput);

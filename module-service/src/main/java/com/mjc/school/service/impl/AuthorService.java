@@ -78,9 +78,4 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
         }
         throw new NotFoundException(String.format(ServiceErrorCodeMessage.AUTHOR_ID_DOES_NOT_EXIST.getCodeMsg(), id));
     }
-
-    @Override
-    public AuthorDtoResponse readTagsByNewsId(Long id) {
-        return null;
-    }
 }

@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -20,11 +21,6 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    public Optional<NewsModel> readTagsByNewsId(Long newsId) {
-        NewsModel newsModel = entityManager.find(NewsModel.class, newsId);
-        return Optional.ofNullable(newsModel);
-    }
 
     @Override
     public List<NewsModel> readAll() {
@@ -37,6 +33,11 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
         return Optional.ofNullable(newsModel);
     }
 
+//    @Override
+//    public NewsModel create(NewsModel model) {
+//        entityManager.persist(model);
+//        return model;
+//    }
 
     @Override
     public NewsModel create(NewsModel model) {

@@ -57,9 +57,4 @@ public class TagRepository implements BaseRepository<TagModel, Long> {
                 .setParameter("id", id)
                 .getSingleResult() > 0;
     }
-
-    @Override
-    public Optional<TagModel> readTagsByNewsId(Long id) {
-        return Optional.empty();
-    }
 }
